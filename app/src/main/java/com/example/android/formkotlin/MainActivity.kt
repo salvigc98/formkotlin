@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -15,8 +16,9 @@ class MainActivity : AppCompatActivity() {
         val name = lblName.editText?.text
         val surname = lblSurname.editText?.text
         val email = lblEmail.editText?.text
-        var phoneNumber = lblPhoneNumber.editText?.text
+        val phoneNumber = lblPhoneNumber.editText?.text
         val password = lblPassword.editText?.text
+        val termsCheck = termsCheck
 
         var isNameValid: Boolean
         var isSurnameValid: Boolean
@@ -81,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                 lblPassword.error = null
             }
 
+
             if (
                 isNameValid &&
                 isSurnameValid &&
@@ -88,25 +91,27 @@ class MainActivity : AppCompatActivity() {
                 isEmailValid &&
                 isPasswordValid
             ) {
-
-                val user = User(
-                    name = name.toString(),
-                    surname = surname.toString(),
-                    email = email.toString(),
-                    phoneNumber = phoneNumber.toString().toInt(),
-                    password = password.toString()
-                )
-
-                Toast.makeText(
-                    this,
-                    "usuario creado con exito",
-                    Toast.LENGTH_LONG
-                ).show()
-
+                if (termsCheck.isChecked) {
+                    val user = User(
+                        name = name.toString(),
+                        surname = surname.toString(),
+                        email = email.toString(),
+                        phoneNumber = phoneNumber.toString().toInt(),
+                        password = password.toString()
+                    )
+                    Toast.makeText(
+                        this,
+                        "usuario creado con exito",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Snackbar.make(
+                        it, // Parent view
+                        "Debe aceptar los terminos", // Message to show
+                        Snackbar.LENGTH_SHORT // How long to display the message.
+                    ).show()
+                }
             }
         }
-
-
-
     }
 }
