@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">formulario Kotlin</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="email">E-mail</string>
+    <string name="telefono">Telefono</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="registrarse">Registrarse</string>
+</resources>
